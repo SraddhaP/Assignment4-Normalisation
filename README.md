@@ -1,4 +1,4 @@
-# Assignment4 Normalisation
+# Normalisation
 
 ### Members: 
 Shruti Milind Randive, Amretasre Rengarajan Thiruvengadam, Sraddha Pedda Gangireddy Gari, Dharma Thanishq Nimmala.
@@ -8,9 +8,11 @@ Shruti Milind Randive, Amretasre Rengarajan Thiruvengadam, Sraddha Pedda Gangire
 The Grocery_Recommendation_System database contains data on all the products available in merchants such as Walmart, Target, Samsclub, and the online delivery application Instacart. This data has been web scrapped from the Google Shopping web platform which includes millions of products from various merchants. The merchant table contains these merchant details along with their web URLs. The product tables contain columns such as product name, price, product inks, ratings, location in terms of zip code, etc. The Branch table data have been scrapped from the "Yellow Pages" website which contains the address and zip codes of all the merchant locations that are available in Boston City. The generated Employee tables contain data concerning employee data such as employee id, first_name, last_name, and age for the selected merchants.
 
 ## Create Table SQL Queries: ##
+
 ```sql
 CREATE DATABASE Grocery_Recommendation_System;
 ```
+
 ```sql
 CREATE table merchant (
 merchant_id INT NOT NULL auto_increment,
