@@ -1,7 +1,7 @@
 # Normalization
 
 ### Members: 
-Shruti Milind Randive, Amretasre Rengarajan Thiruvengadam, Sraddha Pedda Gangireddy Gari, Dharma Thanishq .
+Shruti Milind Randive, Amretasre Rengarajan Thiruvengadam, Sraddha Pedda Gangireddy Gari, Dharma Thanishq Nimmala.
 
 
 ### Introduction:
