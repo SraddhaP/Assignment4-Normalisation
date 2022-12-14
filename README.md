@@ -212,32 +212,33 @@ FOREIGN KEY (merchant_id) REFERENCES merchant(merchant_id);
 ```sql
 CREATE TABLE walmart_product AS 
 SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
-FROM walmart_products;
+FROM walmart_products_df;
 ```
 
 ```sql
 CREATE TABLE target_product AS 
 SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
-FROM target_products;
+FROM target_products_df;
 ```
 
 ```sql
 CREATE TABLE samsclub_product AS 
 SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
-FROM samsclub_products;
+FROM samsclub_products_df;
 ```
-
+#### Creating the product link tables
 ```sql
-Creating the product link tables
 CREATE TABLE walmart_product_links AS
 SELECT prd_id, store_link, product_link
 FROM walmart_product;
+
 ```
 
 ```sql
 CREATE TABLE target_product_links AS
 SELECT prd_id, store_link, product_link
 FROM target_product;
+
 ```
 
 ```sql
@@ -245,12 +246,20 @@ CREATE TABLE samsclub_product_links AS
 SELECT prd_id, store_link, product_link
 FROM samsclub_product;
 ```
-
+#### Creating the product branch relation table
 ```sql
-Creating the product branch relation table
+
 CREATE TABLE walmart_product_branch_relation AS
 SELECT prd_id, branch_id, zipcode
 FROM walmart_products;
+
+ALTER TABLE `grocery_recommendation_system`.`walmart_product_branch_relation` 
+ADD CONSTRAINT `fk_pro_idw`
+  FOREIGN KEY (`prd_id`)
+  REFERENCES `grocery_recommendation_system`.`walmart_products` (`prd_id`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION;
+
 ```
 
 ```sql
