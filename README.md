@@ -431,6 +431,70 @@ FROM
 WHERE
     distance LIKE '%Delivery by Thu%';
 ```    
+
+16.	Display the salary details of walmart employees
+```sql
+Create view walmart_employee_salary as
+SELECT 
+    w.first_name, s.salary
+FROM
+    walmart_employees as w
+        INNER JOIN
+    walmart_emp_salary as s ON walmart_employees.empid = walmart_emp_salary.empid
+    ```
+    
+17.Display the list of employees from target employees whose salary is in between 40000 and 60000
+```sql
+Create view list_of_employees as
+SELECT 
+    *
+FROM
+    target_employees
+        INNER JOIN
+    target_emp_salary ON target_employees.empid = target_emp_salary.empid
+WHERE
+    salary BETWEEN 40000 AND 60000
+    ```
+    
+    
+18.Increment the salary of the employees of target by $10000 whose age is greater than 50
+```sql
+Create view salary_of_emp as
+SELECT 
+    first_name,
+    salary,
+    bonus = 10000,
+    new_salary = salary + 10000
+FROM
+    target_employees
+        INNER JOIN
+    target_emp_salary ON target_employees.empid = target_emp_salary.empid
+WHERE
+    age > 50
+```
+
+19.Display the name and price of the products that is available in both Walmart and Target
+```sql
+Create view name_price as
+SELECT 
+    w.grocery_name, w.product_price, t.product_price
+FROM
+    walmart_products w
+        INNER JOIN
+    target_products t ON w.grocery_name = t.grocery_name;
+    ```
+    
+20.	Displaying all the grocery_name in walmart and grocery_name that is common in target and walmart
+```sql
+Create view grocery_name as
+SELECT 
+    w.grocery_name
+FROM
+    target_products t
+        RIGHT JOIN
+    walmart_products w ON t.grocery_name = w.grocery_name;
+ ```
+
     
  
 
