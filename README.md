@@ -210,68 +210,46 @@ FOREIGN KEY (merchant_id) REFERENCES merchant(merchant_id);
 #### Creating the product tables to achieve Normalization ####
 
 ```sql
-CREATE TABLE walmart_product AS 
-SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
-FROM walmart_products_df;
-```
-
-```sql
-CREATE TABLE target_product AS 
+CREATE TABLE target_products AS 
 SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
 FROM target_products_df;
-```
 
-```sql
-CREATE TABLE samsclub_product AS 
+CREATE TABLE samsclub_products AS 
 SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
 FROM samsclub_products_df;
+
+CREATE TABLE walmart_products AS 
+SELECT grocery_name, product_price, product_rating, prd_id, qty, category, product_name
+FROM walmart_products_df;
+
 ```
 #### Creating the product link tables
 ```sql
 CREATE TABLE walmart_product_links AS
 SELECT prd_id, store_link, product_link
-FROM walmart_product;
+FROM walmart_products_df;
 
-```
-
-```sql
 CREATE TABLE target_product_links AS
 SELECT prd_id, store_link, product_link
-FROM target_product;
+FROM target_products_df;
 
-```
-
-```sql
 CREATE TABLE samsclub_product_links AS
 SELECT prd_id, store_link, product_link
-FROM samsclub_product;
+FROM samsclub_products_df;
 ```
-#### Creating the product branch relation table
+#### Creating the product location table
 ```sql
-
-CREATE TABLE walmart_product_branch_relation AS
+CREATE TABLE walmart_product_location AS
 SELECT prd_id, branch_id, zipcode
-FROM walmart_products;
+FROM walmart_products_df;
 
-ALTER TABLE `grocery_recommendation_system`.`walmart_product_branch_relation` 
-ADD CONSTRAINT `fk_pro_idw`
-  FOREIGN KEY (`prd_id`)
-  REFERENCES `grocery_recommendation_system`.`walmart_products` (`prd_id`)
-  ON DELETE NO ACTION
-  ON UPDATE NO ACTION;
-
-```
-
-```sql
-CREATE TABLE target_product_branch_relation AS
+CREATE TABLE target_product_location AS
 SELECT prd_id, branch_id, zipcode
-FROM target_products;
-```
+FROM target_products_df;
 
-```sql
-CREATE TABLE samsclub_product_branch_relation AS
+CREATE TABLE samsclub_product_location AS
 SELECT prd_id, branch_id, zipcode
-FROM samsclub_products;
+FROM samsclub_products_df;
 ```
 
 ### USE CASES WITH VIEWS:
