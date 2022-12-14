@@ -497,7 +497,18 @@ FROM
     walmart_products w ON t.grocery_name = w.grocery_name;
 ```
 
-    
+#### To achieve normalization the previous table was-
+![image](https://user-images.githubusercontent.com/54211989/207508531-b1e6bc06-b6db-4045-a2b6-18a6aa2c1ae6.png)
+ 
+ 
+ #### After achieving normalization- 
+ ![image](https://user-images.githubusercontent.com/54211989/207508599-c7d4bef4-0293-4941-88b4-b5a8a0600775.png)
+
+![image](https://user-images.githubusercontent.com/54211989/207508653-078dde47-b5a3-4887-a4bb-5a5d0d6410ef.png)
+
+![image](https://user-images.githubusercontent.com/54211989/207508686-d1f04194-c9b5-48f6-919b-4897e64ae4a6.png)
+
+Similary we have divided the tables for all the merchants.
  
 
   
