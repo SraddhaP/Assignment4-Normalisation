@@ -371,3 +371,71 @@ FROM
     target_branch t ON w.zipcode = t.zipcode;
  ```
  
+ 11.	Compare the price of variaties of mangoes available in Walmart and target
+    ```sql
+Create VIEW mango_varieties as
+SELECT 
+    walmart_products.grocery_name,
+    walmart_products.product_price,
+    target_products.product_price
+FROM
+    walmart_products
+        INNER JOIN
+    target_products ON walmart_products.zipcode = target_products.zipcode
+    ```
+    
+ 12. 4.	List the groceries at target and walmart at 02338
+ ```sql
+Create view product_ratings as
+SELECT 
+    w.name AS walmart_groceries,
+    t.name AS target_groceries,
+    w.zipcode
+FROM
+    Walmart_products_location AS w
+        JOIN
+    target_products_location AS t ON w.zipcode = '02338'
+    ```
+    
+  13.	List the number of stores located near zipcode “01970”
+  ```sql
+Create view stores_located as
+SELECT 
+    COUNT(DISTINCT walmart_branch.location) AS walmart_stores,
+    COUNT(DISTINCT target_branch.location) AS target_stores
+FROM
+    target_branch
+        INNER JOIN
+    walmart_branch ON target_branch.zipcode = '01970';
+    ```
+    
+  14.	Displaying Walmart product links that have rating more than 2.0
+  ```sql
+Create view product_ratings as
+SELECT 
+    product_link
+FROM
+    walmart_products_links
+inner join on Walmart_products
+WHERE
+    product_rating > 2.0;
+    ```
+    
+  15. Display the product link of products available for delivery on Dec 8th in Instacart
+  ```sql
+Create view product_links as
+SELECT                        
+    product_link
+FROM
+    instacart_products_link
+WHERE
+    distance LIKE '%Delivery by Thu%';
+```    
+    
+ 
+
+  
+ 
+    
+
+ 
