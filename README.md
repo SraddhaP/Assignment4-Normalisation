@@ -371,8 +371,9 @@ FROM
     target_branch t ON w.zipcode = t.zipcode;
  ```
  
- 11.	Compare the price of variaties of mangoes available in Walmart and target
-    ```sql
+ 11.Compare the price of variaties of mangoes available in Walmart and target
+ 
+ ```sql
 Create VIEW mango_varieties as
 SELECT 
     walmart_products.grocery_name,
@@ -382,9 +383,10 @@ FROM
     walmart_products
         INNER JOIN
     target_products ON walmart_products.zipcode = target_products.zipcode
-    ```
+```
     
- 12. 4.	List the groceries at target and walmart at 02338
+ 12. List the groceries at target and walmart at 02338
+ 
  ```sql
 Create view product_ratings as
 SELECT 
@@ -395,9 +397,9 @@ FROM
     Walmart_products_location AS w
         JOIN
     target_products_location AS t ON w.zipcode = '02338'
-    ```
+```
     
-  13.	List the number of stores located near zipcode “01970”
+  13.List the number of stores located near zipcode “01970”
   ```sql
 Create view stores_located as
 SELECT 
@@ -407,10 +409,10 @@ FROM
     target_branch
         INNER JOIN
     walmart_branch ON target_branch.zipcode = '01970';
-    ```
+```
     
   14.	Displaying Walmart product links that have rating more than 2.0
-  ```sql
+```sql
 Create view product_ratings as
 SELECT 
     product_link
@@ -419,10 +421,10 @@ FROM
 inner join on Walmart_products
 WHERE
     product_rating > 2.0;
-    ```
+```
     
   15. Display the product link of products available for delivery on Dec 8th in Instacart
-  ```sql
+```sql
 Create view product_links as
 SELECT                        
     product_link
@@ -441,7 +443,7 @@ FROM
     walmart_employees as w
         INNER JOIN
     walmart_emp_salary as s ON walmart_employees.empid = walmart_emp_salary.empid
-    ```
+ ```
     
 17.Display the list of employees from target employees whose salary is in between 40000 and 60000
 ```sql
@@ -454,7 +456,7 @@ FROM
     target_emp_salary ON target_employees.empid = target_emp_salary.empid
 WHERE
     salary BETWEEN 40000 AND 60000
-    ```
+```
     
     
 18.Increment the salary of the employees of target by $10000 whose age is greater than 50
@@ -482,7 +484,7 @@ FROM
     walmart_products w
         INNER JOIN
     target_products t ON w.grocery_name = t.grocery_name;
-    ```
+```
     
 20.	Displaying all the grocery_name in walmart and grocery_name that is common in target and walmart
 ```sql
@@ -493,7 +495,7 @@ FROM
     target_products t
         RIGHT JOIN
     walmart_products w ON t.grocery_name = w.grocery_name;
- ```
+```
 
     
  
