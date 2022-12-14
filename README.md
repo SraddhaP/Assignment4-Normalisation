@@ -197,15 +197,15 @@ FOREIGN KEY (merchant_id) REFERENCES merchant(merchant_id);
 
 ### 1st Normal Form: 
 
-	The scraped data from google shopping has the quantity as a part of the product name, hence to achieve the first normal form we have split the product name into quantity and the product name. This is implemented through pandas, directly in the data frame.
+The scraped data from google shopping has the quantity as a part of the product name, hence to achieve the first normal form we have split the product name into quantity and the product name. This is implemented through pandas, directly in the data frame.
 
 ### 2nd Normal Form: 
 
- 	All the columns in the product tables have no partial dependencies or no candidate keys, thus a second normal form is achieved.
+ All the columns in the product tables have no partial dependencies or no candidate keys, thus a second normal form is achieved.
 
 ### 3rd Normal Form: 
 
-	Initially columns such as product_link, store_link, product_rating, etc were a part of the product table. Now, the product table is splitted into three tables namely product, links and product and branch relation table. The product  and the links table for each merchant  is only dependent on the primary key which is the product id. Whereas the product and branch relation table depends on both the product id and the branch id which is the foreign key from merchant_branch table. Therefore, third normal form is achieved. 
+Initially columns such as product_link, store_link, product_rating, etc were a part of the product table. Now, the product table is splitted into three tables namely product, links and product and branch relation table. The product  and the links table for each merchant  is only dependent on the primary key which is the product id. Whereas the product and branch relation table depends on both the product id and the branch id which is the foreign key from merchant_branch table. Therefore, third normal form is achieved. 
 
 #### Creating the product tables to achieve Normalization ####
 
@@ -279,3 +279,95 @@ FROM
     samsclub_products AS s ON w.grocery_name = s.grocery_name
 
 ```
+3.Display all the product link that is common in Walmart and target
+```sql
+SELECT 
+    w.product_link AS walmart_product_link,
+    t.product_link AS target_product_link
+FROM
+    walmart_products_links w
+        INNER JOIN
+    target_products_links t ON t.grocery_name = w.grocery_name;  
+```
+
+4.Displaying all the categories in target and categories that is common in target and sams club
+```sql
+Create view categories as
+SELECT 
+  t.category
+FROM
+  target_products t
+      LEFT JOIN
+  samsclub_products s ON t.category = s.category;
+
+```
+5.Display all female employees in target and Walmart
+```sql
+Create view female_employees as
+SELECT 
+    w.first_name AS walmart_emp, t.first_name AS target_emp
+FROM
+    walmart_employees w,
+    target_employees t
+WHERE
+    w.gender = 'Female'
+        AND t.gender = 'Female'
+ORDER BY w.emp_id , t.emp_id;
+    
+```
+6.Display the total count of Diary products in target
+```sql
+Create view dairy_products as
+SELECT 
+    COUNT(grocery_name)
+FROM
+    target_products
+WHERE
+    category = 'Diary';
+
+```
+
+7.Get the address that has both Sam's club and Target
+```sql
+Create view address as
+SELECT 
+    t.address
+FROM
+    target_branch t
+        INNER JOIN
+    samsclub_branch s ON t.zipcode = s.zipcode;
+```
+
+8.Display the list of products and its price which is available in both walmart and target
+```sql
+Create view products_and_price as
+SELECT 
+    t.grocery_name, t.product_price
+FROM
+    target_products t
+        INNER JOIN
+    walmart_products i ON i.grocery_name = t.grocery_name;
+
+```
+9.Get the URL for Sam's Club
+```sql
+Create view samsclub_url as
+SELECT 
+    merchant_url
+FROM
+    merchant
+WHERE
+    mechant_name LIKE '%Sam%';
+    ```
+    
+  10.Get the address in which both Walmart and Target is Located
+ ```sql
+  Create view location_adderss as
+SELECT 
+    w.address
+FROM
+    walmart_branch w
+        INNER JOIN
+    target_branch t ON w.zipcode = t.zipcode;
+ ```
+ 
