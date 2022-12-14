@@ -358,9 +358,9 @@ FROM
     merchant
 WHERE
     mechant_name LIKE '%Sam%';
-    ```
+ ```
     
-  10.Get the address in which both Walmart and Target is Located
+10.Get the address in which both Walmart and Target is Located
  ```sql
   Create view location_adderss as
 SELECT 
