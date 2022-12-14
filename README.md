@@ -253,5 +253,29 @@ FROM samsclub_products_df;
 ```
 
 ### USE CASES WITH VIEWS:
+1.Display the product ratings of walmart and target
+```sql
+Create view product_ratings as
+SELECT 
+    walmart_products.grocery_name,
+    walmart_products.product_rating AS walmart_ratings,
+    target_products.product_rating AS target_ratings
+FROM
+    walmart_products
+        INNER JOIN
+    target_products ON walmart_products.grocery_name = target_products.grocery_name;
 
+```
+2.Compare the prices of products in walmart and samsclub
+```sql
+Create view product_prices as
+SELECT 
+    s.grocery_name,
+    w.product_price AS walmart_price,
+    s.product_price AS samsclub_price
+FROM
+    walmart_products AS w
+        INNER JOIN
+    samsclub_products AS s ON w.grocery_name = s.grocery_name
 
+```
